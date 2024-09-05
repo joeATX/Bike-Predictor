@@ -3,6 +3,7 @@ import numpy as np
 import joblib
 import os
 
+
 st.title("Bike Purchase Predictor")
 
 st.divider()
