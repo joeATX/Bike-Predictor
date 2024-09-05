@@ -8,26 +8,49 @@ st.title("Bike Purchase Predictor")
 st.divider()
 
 # Input fields
-income = st.number_input("Enter your income", min_value=0, value=300000)
-age = st.number_input("Enter your age", min_value=15, value=30)
-education = st.number_input("Enter your education level (0 to 2)", min_value=0, max_value=2, value=2)
-homeowner = st.number_input("Are you a homeowner? (0 for No, 1 for Yes)", min_value=0, max_value=1, value=1)
+income = st.number_input(
+    "Enter your income",
+    min_value=0,
+    value=300000
+)
+
+age = st.number_input(
+    "Enter your age",
+    min_value=15,
+    value=30
+)
+
+education = st.number_input(
+    "Enter your education level (0 to 2)",
+    min_value=0, max_value=2, value=2
+)
+
+homeowner = st.number_input(
+    "Are you a homeowner? (0 for No, 1 for Yes)",
+    min_value=0, max_value=1, value=1
+)
 
 
-# Check if the model file exists
 model_path = "model.pkl"
+
 if not os.path.isfile(model_path):
-    st.error("Model file not found. Ensure 'model.pkl' is in the correct directory.")
+    st.error(
+        "Model file not found. Ensure 'model.pkl' is in the correct directory."
+    )
     st.stop()
 
 # Load the model
 try:
-    model = joblib.load("model.pkl")
+    model = joblib.load(model_path)
 except FileNotFoundError:
-    st.error("Model file not found. Ensure 'model.pkl' is in the correct directory.")
+    st.error(
+        "Model file not found. Ensure 'model.pkl' is in the correct directory."
+    )
     st.stop()
 except Exception as e:
-    st.error(f"An error occurred while loading the model: {e}")
+    st.error(
+        f"An error occurred while loading the model: {e}"
+    )
     st.stop()
 
 # Prepare the input for prediction
